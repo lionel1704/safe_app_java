@@ -54,7 +54,8 @@ public class Client extends Session {
             }
             Client.setAdditionalSearchPath(System.getenv("HOME") + "/safeNetFiles").get();
             Client.initLogging("Client.log").get();
-        } catch (InterruptedException | ExecutionException | NoSuchFieldException | IOException | IllegalAccessException ex) {
+        } catch (InterruptedException | ExecutionException | NoSuchFieldException
+              | IOException | IllegalAccessException ex) {
             throw new ExceptionInInitializerError(ex);
         }
     }
