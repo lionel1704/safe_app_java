@@ -11,10 +11,19 @@ package net.maidsafe.api.model;
 
 import net.maidsafe.utils.IFreeFunc;
 
+/**
+ * Handle to a complex object in native code
+ */
 public class NativeHandle {
+
     private final IFreeFunc freeFunc;
     protected long handle;
 
+    /**
+     * Initializes a new handle
+     * @param handle Handle to native object
+     * @param freeFunc Function that frees the native object
+     */
     public NativeHandle(final long handle, final IFreeFunc freeFunc) {
         this.handle = handle;
         this.freeFunc = freeFunc;
@@ -22,7 +31,6 @@ public class NativeHandle {
 
     /**
      * Returns handle as long
-     *
      * @return handle
      */
     public long toLong() {

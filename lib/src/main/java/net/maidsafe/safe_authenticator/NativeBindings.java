@@ -10,6 +10,9 @@
 package net.maidsafe.safe_authenticator;
 
 
+/**
+ * Native functions used by safe_authenticator
+ */
 public class NativeBindings {
 
     /**

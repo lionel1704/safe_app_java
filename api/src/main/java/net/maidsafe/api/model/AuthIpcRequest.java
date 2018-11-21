@@ -11,15 +11,26 @@ package net.maidsafe.api.model;
 
 import net.maidsafe.safe_authenticator.AuthReq;
 
+/***
+ * Represents an Ipc Request for an AuthRequest
+ */
 public class AuthIpcRequest extends IpcRequest {
 
     private final AuthReq authReq;
 
+    /***
+     * Initializes an AuthIpcRequest object
+     * @param reqId Request ID
+     * @param authReq Auth Request
+     */
     public AuthIpcRequest(final int reqId, final AuthReq authReq) {
         super(reqId);
         this.authReq = authReq;
     }
 
+    /***
+     * Represents an Ipc Request for unregistered Client Authenticaton
+     */
     public AuthReq getAuthReq() {
         return authReq;
     }

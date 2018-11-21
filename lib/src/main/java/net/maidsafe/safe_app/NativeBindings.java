@@ -10,6 +10,9 @@
 package net.maidsafe.safe_app;
 
 
+/**
+ * Native functions in safe_app
+ */
 public class NativeBindings {
 
     /**

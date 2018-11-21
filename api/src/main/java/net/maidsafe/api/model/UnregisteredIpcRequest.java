@@ -9,15 +9,27 @@
 // of the SAFE Network Software.
 package net.maidsafe.api.model;
 
+/***
+ * Represents an Ipc Request for unregistered Client Authenticaton
+ */
 public class UnregisteredIpcRequest extends IpcRequest {
 
     private final byte[] extraData;
 
+    /***
+     * Initializes an UnregisteredIpcRequest object
+     * @param reqId Request ID
+     * @param extraData Extra arbitrary data
+     */
     public UnregisteredIpcRequest(final int reqId, final byte[] extraData) {
         super(reqId);
         this.extraData = extraData.clone();
     }
 
+    /**
+     * Returns the extra arbitrary data
+     * @return Arbitrary data as byte array
+     */
     public byte[] getExtraData() {
         return extraData.clone();
     }

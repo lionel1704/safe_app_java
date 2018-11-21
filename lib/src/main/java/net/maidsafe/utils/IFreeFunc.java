@@ -9,6 +9,9 @@
 // of the SAFE Network Software.
 package net.maidsafe.utils;
 
+/**
+ * Free function to free native objects from memory
+ */
 public interface IFreeFunc {
     void free(long handle);
 }

@@ -9,19 +9,36 @@
 // of the SAFE Network Software.
 package net.maidsafe.api.model;
 
+/***
+ * Represents a Signing KeyPair
+ */
 public class SignKeyPair {
+
     private final NativeHandle publicSignKey;
     private final NativeHandle secretSignKey;
 
+    /***
+     * Initializes a SignKeyPair object
+     * @param publicSignKey Public Signing Key
+     * @param secretSignKey Private Signing Key
+     */
     public SignKeyPair(final NativeHandle publicSignKey, final NativeHandle secretSignKey) {
         this.publicSignKey = publicSignKey;
         this.secretSignKey = secretSignKey;
     }
 
+    /***
+     * Returns the public signing key
+     * @return Public sign key as {@link NativeHandle}
+     */
     public NativeHandle getPublicSignKey() {
         return publicSignKey;
     }
 
+    /***
+     * Returns the secret signing Key
+     * @return Secret sign key as {@link NativeHandle}
+     */
     public NativeHandle getSecretSignKey() {
         return secretSignKey;
     }
