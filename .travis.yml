@@ -31,6 +31,15 @@ matrix:
         - $ANDROID_HOME/platform_tools/adb shell input keyevent 82 &
     - os: osx
       osx_image: xcode10.1
+      before_deploy:
+        - ./gradlew :safe-app-android:javadoc
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GH_TOKEN
+        local_dir: $TRAVIS_BUILD_DIR/safe-app-android/build/docs/javadoc
+        on:
+          branch: master
   allow_failures:
     - os: osx
 before_install:
@@ -42,6 +51,6 @@ before_install:
 script:
   - chmod +x gradlew
   - ./gradlew download-nativelibs
-  - ./gradlew check
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./gradlew :safe-app-android:runInstrumentationTests --info; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./gradlew check; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./gradlew :safe-app-android:runInstrumentationTests; fi
 
