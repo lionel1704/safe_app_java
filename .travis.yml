@@ -31,6 +31,15 @@ matrix:
         - $ANDROID_HOME/platform_tools/adb shell input keyevent 82 &
     - os: osx
       osx_image: xcode10.1
+      before_deploy:
+        - ./gradlew :safe-app-android:javadoc
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GH_TOKEN
+        local_dir: $TRAVIS_BUILD_DIR/safe-app-android/build/docs/javadoc
+        on:
+          branch: master
   allow_failures:
     - os: osx
 before_install:
