@@ -1,5 +1,23 @@
 import de.undercouch.gradle.tasks.download.Download
+buildscript {
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
 
+    classpath 'com.android.tools.build:gradle:3.2.1'
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+    classpath 'de.undercouch:gradle-download-task:3.2.0'
+  }
+}
+plugins {
+  id "com.jfrog.bintray" version "1.8.4"
+  id "com.jfrog.artifactory" version "4.8.1"
+  id "maven-publish"
+  id 'signing'
+}
 apply plugin: 'com.android.library'
 
 android {
@@ -67,19 +85,6 @@ task javadoc(type: Javadoc) {
   source = android.sourceSets.main.java.sourceFiles
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
   classpath += configurations.compile
-}
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        classpath 'de.undercouch:gradle-download-task:3.2.0'
-    }
 }
 
 dependencies {
@@ -161,3 +166,5 @@ task("download-nativelibs", type: Delete) {
     }]
     delete tempLibDir
 }
+
+apply from: 'bintray.gradle'
