@@ -35,8 +35,7 @@ public class MDataTest {
     static final int TYPE_TAG = 15001;
 
 
-    private void publicMDataCrud(final MDataInfo mDataInfo) throws Exception {
-        Session session = TestHelper.createSession();
+    private void publicMDataCrud(final Session session, final MDataInfo mDataInfo) throws Exception {
         PermissionSet permissionSet = new PermissionSet();
         permissionSet.setInsert(true);
         permissionSet.setUpdate(true);
@@ -117,8 +116,7 @@ public class MDataTest {
         Assert.assertEquals(1, version);
     }
 
-    private void privateMDataCrud(final MDataInfo mDataInfo) throws Exception {
-        Session session = TestHelper.createSession();
+    private void privateMDataCrud(final Session session, final MDataInfo mDataInfo) throws Exception {
         PermissionSet permissionSet = new PermissionSet();
         permissionSet.setInsert(true);
         permissionSet.setUpdate(true);
@@ -180,16 +178,17 @@ public class MDataTest {
         Session session = TestHelper.createSession();
         long tagType = TYPE_TAG;
         MDataInfo mDataInfo = session.mData.getRandomPublicMData(tagType).get();
-        publicMDataCrud(mDataInfo);
+        publicMDataCrud(session, mDataInfo);
     }
 
     @Test
     public void publicMDataCRUDTest() throws Exception {
+        Session session = TestHelper.createSession();
         long tagType = TYPE_TAG;
         MDataInfo mDataInfo = new MDataInfo();
         mDataInfo.setName(Helper.randomAlphaNumeric(Constants.XOR_NAME_LENGTH).getBytes());
         mDataInfo.setTypeTag(tagType);
-        publicMDataCrud(mDataInfo);
+        publicMDataCrud(session, mDataInfo);
     }
 
     @Test
@@ -197,7 +196,7 @@ public class MDataTest {
         Session session = TestHelper.createSession();
         long tagType = TYPE_TAG;
         MDataInfo mDataInfo = session.mData.getRandomPrivateMData(tagType).get();
-        privateMDataCrud(mDataInfo);
+        privateMDataCrud(session, mDataInfo);
     }
 
     @Test
@@ -210,6 +209,6 @@ public class MDataTest {
                 .get();
         MDataInfo mDataInfo = session.mData.getPrivateMData(Helper.randomAlphaNumeric(
                 Constants.XOR_NAME_LENGTH).getBytes(), tagType, secretKey, nonce).get();
-        privateMDataCrud(mDataInfo);
+        privateMDataCrud(session, mDataInfo);
     }
 }
